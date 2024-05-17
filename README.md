@@ -1,7 +1,7 @@
 # Reference architecture for secure cross-tenant API traffic #
 
 [![CC BY-NC-SA 4.0][cc-by-nc-sa-shield]][cc-by-nc-sa]
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/erwinkramer/bicep-sharp)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/erwinkramer/reference-architecture-secure-cross-tenant-API-traffic)
 
 The Azure landscape steadily moves to Microsoft managed product-suites. Previously, we had the option to provision Azure Purview in our own Azure subscription, but now we have [Microsoft Purview](https://learn.microsoft.com/purview/purview). Similarly, Azure Synapse Analytics and Data Factory were available for provisioning in our subscription, but now we have [Microsoft Fabric](https://www.microsoft.com/microsoft-fabric). This shift isn't merely about rebranding; it represents a move from managing Azure resources within our own subscription to managing them within Microsoft's tenant. As a consequence, there's an implicit cross-tenancy relationship with Microsoft across various levels, including the network.
 
