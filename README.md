@@ -142,7 +142,7 @@ After following the [prerequisites](#prerequisites), create the connection. This
 
 6. All there is left is using the right settings to utilize the managed private endpoint in Synapse. Because there is no concept of DNS resolution for managed private endpoints for Application Gateway, use the managed private endpoint private IP that was created earlier for the URL field and form a working request, for instance `http://10.250.0.16/hello-api/helloworld`. The [multi-site setup](https://learn.microsoft.com/en-us/azure/application-gateway/multiple-site-overview) does require a valid host, so the host header is used. This setup assumes:
    - the frontend in the Application Gateway listens on requests with host `apimanagement.contoso.nl` on port 80 (as configured in step 1.2)
-   - the backend in the Application Gateway accepts GET responses on path `hello-api/helloworld`.
+   - the backend in the Application Gateway accepts GET requests on path `hello-api/helloworld`.
 
     In `Advanced`, make sure to select the runtime that is connected to the managed virtual network.
 
