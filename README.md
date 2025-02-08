@@ -160,7 +160,7 @@ Configure a root or product policy with logic to identify private traffic based 
 
 ## Identity based security ##
 
-Federated Credentials are very powerful for generic identity based security in cross-tenant scenario's. Any modern identity provider can be used. For every external identity you want to trust, configure a [user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with an [external identity provider](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp#other).
+Federated credentials are very powerful for generic identity based security in cross-tenant API scenario's. Any modern identity provider can be used. For every external identity you want to trust, configure a [user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with an [external identity provider](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp#other).
 
 Assign this managed identity a specific API role, or API Management role, defined on a custom Entra ID application, for example via [Assign-Permission.ps1](./Assign-Permission.ps1).
 
