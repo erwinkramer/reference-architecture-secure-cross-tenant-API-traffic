@@ -168,7 +168,7 @@ Secure a product or API with a [jwt-policy](https://learn.microsoft.com/en-us/az
 
 ### Auth0 ###
 
-For Auth0, configure a `Machine to Machine` application. Under `Advanced Settings` - `Grant Types`, enable `Client Credentials`.
+For Auth0, configure an API under `Applications` - `APIs`, with Identifier `Azure`, and the default JWT Profile `Auth0`, and Signing Algorithm `RS256`.
 
 For the Managed Identity, it might look like this:
 
