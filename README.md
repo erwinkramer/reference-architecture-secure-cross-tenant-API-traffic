@@ -158,6 +158,24 @@ In a setup of the Application Gateway, where both public and private traffic flo
 
 Configure a root or product policy with logic to identify private traffic based on the newly introduced header with the [Check HTTP header policy](https://learn.microsoft.com/en-us/azure/api-management/check-header-policy) in API Management, in a similar way as [documented for Front Door](https://learn.microsoft.com/en-us/azure/api-management/front-door-api-management#check-front-door-header).
 
+## Identity based security ##
+
+Federated Credentials are very powerful for generic identity based security in cross-tenant scenario's. Any modern identity provider can be used. For every external identity you want to trust, configure a [user-assigned managed identity](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp) with an [external identity provider](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust-user-assigned-managed-identity?pivots=identity-wif-mi-methods-azp#other).
+
+### Auth0 ###
+
+For Auth0, configure a `Machine to Machine` application. Under `Advanced Settings` - `Grant Types`, enable `Client Credentials`.
+
+For the Managed Identity, it might look like this:
+
+![Managed Identity - Federated Credentials](./images/mi-federated-cred.png)
+
+Assign this managed identity a specific API role, or API Management role, defined on a custom Entra ID application, for example via [Assign-Permission.ps1](./Assign-Permission.ps1).
+
+Secure a product or API with a [jwt-policy](https://learn.microsoft.com/en-us/azure/api-management/validate-jwt-policy) and *only* validate the role of the custom Entra ID application.
+
+To generate an [access token request with a federated credential](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#third-case-access-token-request-with-a-federated-credential) via Auth0, see [Auth0ClientCred.http](./Auth0ClientCred.http). This eventually returns a token, issued by our own Entra ID tenant, with a role on our own Entra ID application, just what we need for passing the API Management jwt-policy when making requests to an API.
+
 ## Considerations ##
 
 1. The `client_ip` or `add_x_forwarded_for_proxy` [server variable](https://learn.microsoft.com/en-us/azure/application-gateway/rewrite-http-headers-url#server-variables) in the Application Gateway is appended with `10.250.0.16` in this example. This is not a practical way to check the source (with an API Management [ip-filter policy](https://learn.microsoft.com/en-us/azure/api-management/ip-filter-policy) for instance), as the managed virtual network ranges are not properly documented, nor are the ranges configurable during provisioning. As a side note: IP-spoofing exists but is proven to be nearly impossible on TCP (which HTTP uses, which we only allow in this API architecture), so it is not a wrong method to consider.

@@ -1,0 +1,35 @@
+# Workflow for Managed Identity with Auth0:
+# https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#third-case-access-token-request-with-a-federated-credential
+#
+# Configure Auth0 at:
+# https://manage.auth0.com/dashboard/us/dev-t6czzh704lcitkvd/applications/vPZv9RXaCAbJaMPQ8eAxmSuWGvIbqNlx/settings
+
+@Auth0ClientId = vPZv9RXaCAbJaMPQ8eAxmSuWGvIbqNlx
+@Auth0ClientSecret = yoursecret
+
+# @name loginAuth0
+POST /oauth/token HTTP/1.1
+Host: dev-t6czzh704lcitkvd.us.auth0.com:443
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{Auth0ClientId}}
+&client_secret={{Auth0ClientSecret}}
+&audience=azure
+
+### 
+
+@Auth0Token = {{loginAuth0.response.body.$.access_token}}
+
+# @name federatedAuth0
+POST /b81eb003-1c5c-45fd-848f-90d9d3f8d016/oauth2/v2.0/token HTTP/1.1 
+Host: login.microsoftonline.com:443
+Content-Type: application/x-www-form-urlencoded
+
+scope=api://bank-nl/.default
+&client_id=11764a77-04a2-461a-a2a4-f6b3252d6dd7
+&client_assertion_type=urn%3Aietf%3Aparams%3Aoauth%3Aclient-assertion-type%3Ajwt-bearer
+&client_assertion={{Auth0Token}}
+&grant_type=client_credentials
+
+###
