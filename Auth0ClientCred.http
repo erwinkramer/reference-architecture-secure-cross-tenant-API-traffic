@@ -2,9 +2,10 @@
 # https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow#third-case-access-token-request-with-a-federated-credential
 #
 # Configure Auth0 at:
-# https://manage.auth0.com/dashboard/us/dev-t6czzh704lcitkvd/applications/vPZv9RXaCAbJaMPQ8eAxmSuWGvIbqNlx/settings
+# api representation: https://manage.auth0.com/dashboard/us/dev-t6czzh704lcitkvd/apis/67a79ab8e74055fae50c242d/settings
+# application representation: https://manage.auth0.com/dashboard/us/dev-t6czzh704lcitkvd/applications/332JPmpa889DtITmbIPUNop6fX8hrpPS/settings
 
-@Auth0ClientId = vPZv9RXaCAbJaMPQ8eAxmSuWGvIbqNlx
+@Auth0ClientId = 332JPmpa889DtITmbIPUNop6fX8hrpPS
 @Auth0ClientSecret = yoursecret
 
 # @name loginAuth0

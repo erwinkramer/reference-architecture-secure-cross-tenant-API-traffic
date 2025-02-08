@@ -168,7 +168,7 @@ Secure a product or API with a [jwt-policy](https://learn.microsoft.com/en-us/az
 
 ### Auth0 ###
 
-In the Auth0 dashboard, configure an API under `Applications` - `APIs`, with Identifier `Azure`, and the default JWT Profile `Auth0`, and Signing Algorithm `RS256`.
+In the Auth0 dashboard, configure an API under `Applications` - `APIs`, with Identifier `Azure`, and the default JWT Profile `Auth0`, and Signing Algorithm `RS256`. Then navigate to `Applications - Applications` and open the newly created API as application to retrieve the `Client ID` and `Client Secret` values for next steps.
 
 For the Managed Identity, it might look like this:
 
